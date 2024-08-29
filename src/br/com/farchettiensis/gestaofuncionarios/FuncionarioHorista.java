@@ -7,18 +7,19 @@ public class FuncionarioHorista extends Funcionario {
     private int horasExtras;
     private int faltas;
 
-    public FuncionarioHorista(String nome, String cpfCnpj, double salarioBase, int horasTrabalhadas, int horasExtras, int faltas) {
-        super(nome, cpfCnpj, salarioBase, TipoFuncionario.HORISTA);
+    public FuncionarioHorista(String nome, String cpfCnpj, int horasTrabalhadas, int horasExtras, int faltas, double valorHora) {
+        super(nome, cpfCnpj, TipoFuncionario.HORISTA);
         this.horasTrabalhadas = horasTrabalhadas;
         this.horasExtras = horasExtras;
         this.faltas = faltas;
+        this.valorHora = valorHora;
     }
 
-    public FuncionarioHorista(String nome, String cpfCnpj, double salarioBase, int horasTrabalhadas, int horasExtras, int faltas, double valorHora) {
-        super(nome, cpfCnpj, salarioBase, TipoFuncionario.HORISTA);
-        this.horasTrabalhadas = horasTrabalhadas;
-        this.horasExtras = horasExtras;
-        this.faltas = faltas;
+    public double getValorHora() {
+        return valorHora;
+    }
+
+    public void setValorHora(double valorHora) {
         this.valorHora = valorHora;
     }
 
@@ -49,26 +50,20 @@ public class FuncionarioHorista extends Funcionario {
     @Override
     public double calcularSalario() {
         double salarioBase = horasTrabalhadas * valorHora;
-        int horasExtras = horasTrabalhadas - 240;
 
+        double valorHorasExtras = 0;
         if (horasExtras > 0) {
-            double valorHoraExtraPrimeiras = valorHora * 1.7;
-            double valorHoraExtraDemais = valorHora * 2;
-            double valorHorasExtras = 0;
-
             if (horasExtras <= 2) {
-                valorHorasExtras = horasExtras * valorHoraExtraPrimeiras;
+                valorHorasExtras = horasExtras * valorHora * 1.7;
             } else {
-                valorHorasExtras = 2 * valorHoraExtraPrimeiras + (horasExtras - 2) * valorHoraExtraDemais;
+                valorHorasExtras = 2 * valorHora * 1.7;
+                valorHorasExtras += (horasExtras - 2) * valorHora * 2;
             }
-
-            salarioBase += valorHorasExtras;
         }
 
         double valorDia = valorHora * 8;
-        salarioBase -= faltas * valorDia * 2;
+        double deducoesFaltas = faltas * valorDia * 2;
 
-        return salarioBase;
+        return salarioBase + valorHorasExtras - deducoesFaltas;
     }
-
 }

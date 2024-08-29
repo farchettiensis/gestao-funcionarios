@@ -2,10 +2,20 @@ package br.com.farchettiensis.gestaofuncionarios;
 
 public class FuncionarioMensalista extends Funcionario {
     private double bonusAnual;
+    private double salarioBase;
 
     public FuncionarioMensalista(String nome, String cpfCnpj, double salarioBase, double bonusAnual) {
-        super(nome, cpfCnpj, salarioBase, TipoFuncionario.MENSALISTA);
+        super(nome, cpfCnpj, TipoFuncionario.MENSALISTA);
         this.bonusAnual = bonusAnual;
+        this.salarioBase = salarioBase;
+    }
+
+    public double getSalarioBase() {
+        return salarioBase;
+    }
+
+    public void setSalarioBase(double salarioBase) {
+        this.salarioBase = salarioBase;
     }
 
     public double getBonusAnual() {

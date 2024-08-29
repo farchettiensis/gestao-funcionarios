@@ -3,6 +3,7 @@ package br.com.farchettiensis.gestaofuncionarios;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("all")
 public class Empresa {
     private String nome;
     private String cnpj;

@@ -4,7 +4,7 @@ public class Main {
     public static void main(String[] args) {
         Empresa empresa = new Empresa("Instituto Jamil", "42264699000147");
 
-        FuncionarioHorista horista = new FuncionarioHorista("Charly Garcia", "29611736045", 2400.00, 220, 0, 1);
+        FuncionarioHorista horista = new FuncionarioHorista("Charly Garcia", "29611736045", 240, 50, 0, 10);
         FuncionarioMensalista mensalista = new FuncionarioMensalista("Miguel Abuelo", "78186089071", 3000.00, 5000.00);
 
         empresa.adicionarFuncionario(horista);
@@ -15,4 +15,5 @@ public class Main {
         System.out.printf("Funcionário: %s.%nTipo: %s.%nSalário: %.2f.%n", mensalista.getNome(), mensalista.getDescricaoTipo(), mensalista.calcularSalario());
     }
 }
+
 
